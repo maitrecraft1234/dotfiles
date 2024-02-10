@@ -22,7 +22,11 @@ return require('packer').startup(function(use)
             'nvim-tree/nvim-web-devicons', -- optional
         },
     }
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+    use ('folke/neodev.nvim')
 	use ( "nvim-treesitter/nvim-treesitter", {run = ":TSUpdate"} )
+    use ('theHamsta/nvim-dap-virtual-text')
+    use ( "github/copilot.vim")
 	use ("nvim-treesitter/playground")
 	use ("theprimeagen/harpoon")
 	use("mbbill/undotree")

@@ -1,5 +1,6 @@
 local lsp_zero = require('lsp-zero')
 
+
 lsp_zero.on_attach(function(client, bufnr)
     local opts = {buffer = bufnr, remap = false}
 
@@ -46,4 +47,24 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.complete(),
     }),
 })
+
+local lspconfig = require('lspconfig')
+local configs = require('lspconfig.configs')
+
+lsp_zero.on_attach(function(client, bufnr)
+  lsp_zero.default_keymaps({buffer = bufnr})
+end)
+
+if not configs.ecsls then
+  configs.ecsls = {
+    default_config = {
+      name = 'ecsls',
+      cmd = { '/home/vj/tmp/env/bin/ecsls_run' },
+      --autostart = true,
+      filetypes = { 'c', 'cpp', 'make' },
+      root_dir = lspconfig.util.root_pattern('.git', 'Makefile'),
+    },
+  }
+end
+lspconfig.ecsls.setup({})
 
