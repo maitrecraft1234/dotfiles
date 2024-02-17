@@ -59,10 +59,13 @@ if not configs.ecsls then
   configs.ecsls = {
     default_config = {
       name = 'ecsls',
-      cmd = { '/home/vj/tmp/env/bin/ecsls_run' },
-      --autostart = true,
+      cmd = { 'ecsls_run' },
+      autostart = true,
       filetypes = { 'c', 'cpp', 'make' },
       root_dir = lspconfig.util.root_pattern('.git', 'Makefile'),
+    },
+    init_options = {
+        path = '/home/vj/tmp/banana-coding-style-checker'
     },
   }
 end
