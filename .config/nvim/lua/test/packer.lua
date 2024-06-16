@@ -1,0 +1,68 @@
+-- This file can be loaded by calling `lua require('plugins')` from your init.vim
+
+-- Only required if you have packer configured as `opt`
+vim.cmd [[packadd packer.nvim]]
+
+return require('packer').startup(function(use)
+	-- Packer can manage itself
+	use 'wbthomason/packer.nvim'
+	use {
+		'nvim-telescope/telescope.nvim', tag = '0.1.5',
+		-- or                            , branch = '0.1.x',
+		requires = { {'nvim-lua/plenary.nvim'} }
+	}
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+            'nvim-tree/nvim-web-devicons', -- optional
+        },
+    }
+    use {
+        "danielfalk/smart-open.nvim",
+        branch = "0.2.x",
+        config = function()
+            require"telescope".load_extension("smart_open")
+        end,
+        requires = {
+            {"kkharji/sqlite.lua"},
+            -- Only required if using match_algorithm fzf
+            { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+            -- Optional.  If installed, native fzy will be used when match_algorithm is fzy
+            { "nvim-telescope/telescope-fzy-native.nvim" },
+        }
+    }
+    use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+    use ('folke/neodev.nvim')
+	use ( "nvim-treesitter/nvim-treesitter", {run = ":TSUpdate"} )
+    use ('theHamsta/nvim-dap-virtual-text')
+    use ( "github/copilot.vim")
+    use ("nvim-neotest/nvim-nio" )
+	use ("nvim-treesitter/playground")
+	use ("theprimeagen/harpoon")
+	use("mbbill/undotree")
+	use("tpope/vim-fugitive")
+	use('ThePrimeagen/vim-be-good')
+    use { "catppuccin/nvim", as = "catppuccin" }
+    use ('tmsvg/pear-tree')
+    use ('x4m3/vim-epitech')
+    use 'simrat39/rust-tools.nvim'
+    use 'terrortylor/nvim-comment'
+	use {
+		'VonHeikemen/lsp-zero.nvim',
+		branch = 'v3.x',
+		requires = {
+			--- Uncomment the two plugins below if you want to manage the language servers from neovim
+			--- and read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
+			{'williamboman/mason.nvim'},
+			{'williamboman/mason-lspconfig.nvim'},
+
+			-- LSP Support
+			{'neovim/nvim-lspconfig'},
+			-- Autocompletion
+			{'hrsh7th/nvim-cmp'},
+			{'hrsh7th/cmp-nvim-lsp'},
+			{'L3MON4D3/LuaSnip'},
+		}
+	}
+end)
+

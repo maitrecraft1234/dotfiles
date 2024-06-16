@@ -1,0 +1,3 @@
+[submodule "scripts/cccc.d"]
+	path = scripts/cccc.d
+	url = git@github.com:lpinf-code/cccc.git
