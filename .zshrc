@@ -95,6 +95,8 @@ export EDITOR='nvim'
 # export ARCHFLAGS="-arch x86_64"
 
 bindkey -v
+export KEYTIMEOUT=1
+#fix esc taking too long to go to normal mode
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
