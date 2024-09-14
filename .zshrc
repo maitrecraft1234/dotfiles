@@ -102,8 +102,9 @@ bindkey -v
 # For a full list of active aliases, run `alias`.
 alias ls='eza --icons auto'
 alias emacs='emacs -nw'
-alias mc='mcsr/remove_worlds.sh ;(~/python/bin/autokey-qt)& ; (java -jar mcsr/Ninjabrain-Bot-1.4.2.jar&) && mpv ~/Drive/jrrF --shuffle --volume=30 --vid=no --no-audio-display'
-alias virt-setup='xhost si:localuser:root && virt-manager'
+alias mc='mcsr/remove_worlds.sh ;(~/python/bin/autokey-qt)& ;(java -jar mcsr/Ninjabrain-Bot-1.4.2.jar&) && mpv ~/jrrF --shuffle --volume=30 --vid=no --no-audio-display'
+alias virt-setup='xhost si:localuser:root'
+alias icat='kitty kitten icat'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
@@ -112,3 +113,7 @@ eval "$(zoxide init zsh)"
 export GPG_TTY=$(tty)
 
 [ -f "/home/vj/.ghcup/env" ] && . "/home/vj/.ghcup/env" # ghcup-env
+
+
+export ASAN_OPTIONS=abort_on_error=1:halt_on_error=1
+export UBSAN_OPTIONS=abort_on_error=1:halt_on_error=1
