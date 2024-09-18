@@ -10,6 +10,8 @@ require('telescope').setup{
                 ["<C-c>"] = { "<esc>", type = "command" },
                 ["<C-a>"] = action_layout.toggle_preview,
                 ["<C-j>"] = actions.select_default,
+                ["<C-y>"] = actions.select_default,
+
             },
             n = {
                 ["<C-c>"] = actions.close,
