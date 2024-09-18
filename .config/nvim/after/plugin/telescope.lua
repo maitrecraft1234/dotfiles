@@ -4,11 +4,16 @@ local action_layout = require("telescope.actions.layout")
 
 require('telescope').setup{
     defaults = {
-        mappings = {
+                mappings = {
             i = {
                 ["<esc>"] = actions.close,
                 ["<C-c>"] = { "<esc>", type = "command" },
-                ["<C-p>"] = action_layout.toggle_preview,
+                ["<C-a>"] = action_layout.toggle_preview,
+                ["<C-j>"] = actions.select_default,
+            },
+            n = {
+                ["<C-c>"] = actions.close,
+                ["<C-a>"] = action_layout.toggle_preview,
             },
         },
     },
