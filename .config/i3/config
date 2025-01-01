@@ -42,13 +42,6 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -57,10 +50,10 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
 
 # kill focused window
-bindsym $mod+Shift+A kill
+bindsym $mod+Shift+Q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run -l 4 -p Swag-Menu -i -fn "CommitMono-25" -nb "#283822" -nf "#abb2bf" -sb "#61afef" -sf "#282c34"
@@ -166,50 +159,50 @@ set $ws19 "19"
 set $ws20 "20"
 
 # switch to workspace
-bindsym $mod+ampersand workspace $ws1
-bindsym $mod+eacute workspace $ws2
-bindsym $mod+quotedbl workspace $ws3
-bindsym $mod+apostrophe workspace $ws4
-bindsym $mod+parenleft workspace $ws5
-bindsym $mod+minus workspace $ws6
-bindsym $mod+egrave workspace $ws7
-bindsym $mod+underscore workspace $ws8
-bindsym $mod+ccedilla workspace $ws9
-bindsym $mod+agrave workspace $ws10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
-bindsym $mod2+ampersand workspace $ws11
-bindsym $mod2+eacute workspace $ws12
-bindsym $mod2+quotedbl workspace $ws13
-bindsym $mod2+apostrophe workspace $ws14
-bindsym $mod2+parenleft workspace $ws15
-bindsym $mod2+minus workspace $ws16
-bindsym $mod2+egrave workspace $ws17
-bindsym $mod2+underscore workspace $ws18
-bindsym $mod2+ccedilla workspace $ws19
-bindsym $mod2+agrave workspace $ws20
+bindsym $mod2+1 workspace $ws11
+bindsym $mod2+2 workspace $ws12
+bindsym $mod2+3 workspace $ws13
+bindsym $mod2+4 workspace $ws14
+bindsym $mod2+5 workspace $ws15
+bindsym $mod2+6 workspace $ws16
+bindsym $mod2+7 workspace $ws17
+bindsym $mod2+8 workspace $ws18
+bindsym $mod2+9 workspace $ws19
+bindsym $mod2+0 workspace $ws20
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+eacute move container to workspace $ws2
+bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+egrave move container to workspace $ws7
+bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+ccedilla move container to workspace $ws9
-bindsym $mod+Shift+agrave move container to workspace $ws10
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
 bindsym $mod2+Shift+1 move container to workspace $ws11
-bindsym $mod2+Shift+eacute move container to workspace $ws12
+bindsym $mod2+Shift+2 move container to workspace $ws12
 bindsym $mod2+Shift+3 move container to workspace $ws13
 bindsym $mod2+Shift+4 move container to workspace $ws14
 bindsym $mod2+Shift+5 move container to workspace $ws15
 bindsym $mod2+Shift+6 move container to workspace $ws16
-bindsym $mod2+Shift+egrave move container to workspace $ws17
+bindsym $mod2+Shift+7 move container to workspace $ws17
 bindsym $mod2+Shift+8 move container to workspace $ws18
-bindsym $mod2+Shift+ccedilla move container to workspace $ws19
-bindsym $mod2+Shift+agrave move container to workspace $ws20
+bindsym $mod2+Shift+9 move container to workspace $ws19
+bindsym $mod2+Shift+0 move container to workspace $ws20
 #force window to open on specific workspace
 #assign [class="firefox"] $ws2
 for_window [title="^Minecraft*"] floating enable
@@ -286,24 +279,28 @@ bar {
 
 bindsym $mod+shift+x exec i3lock -c 000000
 
-# Pulse Audio controls
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+# Use pactl to adjust volume in PulseAudio.
+# set $refresh_i3status killall -SIGUSR1 i3status
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+bindsym XF86AudioRaiseVolume exec /home/vj/mcsr/volume.sh 5
+bindsym XF86AudioLowerVolume exec /home/vj/mcsr/volume.sh -5
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec sh -c 'echo cycle pause | socat - "$HOME/.config/mpv/socket"'
+bindsym XF86AudioPause exec sh -c 'echo cycle pause | socat - "$HOME/.config/mpv/socket"'
+bindsym XF86AudioNext exec sh -c 'echo playlist-next | socat - "$HOME/.config/mpv/socket"'
+bindsym XF86AudioPrev exec sh -c 'echo playlist-prev | socat - "$HOME/.config/mpv/socket"'
 
 #Application launched at start
 exec i3lock -c 000000
-exec rclone mount Drive: ~/Drive
+#exec rclone mount Drive: ~/Drive
 
 #exec_always
 #wallpaper
@@ -334,3 +331,4 @@ bindsym Ctrl+B exec --no-startup-id ls
 
 # Restore Minecraft window to 1080p (1920x1080) and set starting position on the right monitor
 #bindsym $mod+Shift+n exec xdotool search --class "minecraft" windowsize 1920 1080 windowmove 1920 0 && xdotool search --class "minecraft" windowsize 1920 1080 windowmove 1920 0 && xdotool search --class "minecraft" windowsize 1920 1080 windowmove 1920 0 && xinput set-prop 9 "Coordinate Transformation Matrix" 0.4 0 1729 0 0.4 325 0 0 1
+exec /home/vj/mcsr/mc.sh
