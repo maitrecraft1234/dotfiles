@@ -4,20 +4,9 @@ local lsp_zero = require('lsp-zero')
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { 'rust_analyzer', 'clangd', "jedi_language_server" },
+    ensure_installed = {'rust_analyzer', 'clangd', "jedi_language_server"},
     handlers = {
         lsp_zero.default_setup,
-
-        clangd = function()
-            require('lspconfig').clangd.setup({
-                cmd = { "clangd", "--clang-tidy", "--clang-tidy-checks=clang-analyzer-*,modernize-*,cppcoreguidelines-*",
-                },
-                on_attach = lsp_zero.on_attach,
-                capabilities = lsp_zero.get_capabilities(),
-            })
-        end,
-
-
         lua_ls = function()
             local lua_opts = lsp_zero.nvim_lua_ls()
             require('lspconfig').lua_ls.setup(lua_opts)
@@ -26,15 +15,15 @@ require('mason-lspconfig').setup({
 })
 
 local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
+local cmp_select = {behavior = cmp.SelectBehavior.Select}
 
 cmp.setup({
     sources = {
-        { name = 'path' },
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lua' },
-        { name = 'luasnip', keyword_length = 2 },
-        { name = 'buffer',  keyword_length = 3 },
+        {name = 'path'},
+        {name = 'nvim_lsp'},
+        {name = 'nvim_lua'},
+        {name = 'luasnip', keyword_length = 2},
+        {name = 'buffer', keyword_length = 3},
     },
     formatting = lsp_zero.cmp_format(),
     mapping = cmp.mapping.preset.insert({
@@ -49,7 +38,7 @@ local lspconfig = require('lspconfig')
 local configs = require('lspconfig.configs')
 
 lsp_zero.on_attach(function(client, bufnr)
-    lsp_zero.default_keymaps({ buffer = bufnr })
+  lsp_zero.default_keymaps({buffer = bufnr})
 end)
 
 --if not configs.ecsls then
@@ -71,14 +60,14 @@ end)
 local rt = require("rust-tools")
 
 rt.setup({
-    server = {
-        on_attach = function(_, bufnr)
-            -- Hover actions
-            vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-            -- Code action groups
-            vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-        end,
-    },
+  server = {
+    on_attach = function(_, bufnr)
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
 })
 
 lsp_zero.on_attach(function(client, bufnr)

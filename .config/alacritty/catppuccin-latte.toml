@@ -1,13 +1,6 @@
-[font]
-size= 20.0
-normal = { family = "CommitMono Nerd Font", style = "Regular" }
-bold = { family = "CommitMono Nerd Font", style = "Bold" }
-italic = { family = "CommitMono Nerd Font", style = "Italic" }
-bold_italic = { family = "CommitMono Nerd Font", style = "Bold Italic" }
-
 [colors.primary]
-background = "#eff1f5"#"#1b1c24" #
-foreground = "#4c4f69"#"#20c997" #
+background = "#eff1f5"
+foreground = "#4c4f69"
 dim_foreground = "#8c8fa1"
 bright_foreground = "#4c4f69"
 

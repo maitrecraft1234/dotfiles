@@ -10,18 +10,19 @@ return require('packer').startup(function(use)
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.5',
         -- or                            , branch = '0.1.x',
-        requires = { { 'nvim-lua/plenary.nvim',
-            'nvim-tree/nvim-web-devicons' } }
+        requires = { { 'nvim-lua/plenary.nvim' ,
+        'nvim-tree/nvim-web-devicons'}  }
     }
-    use { "stevearc/oil.nvim",
-        requires = { { 'nvim-tree/nvim-web-devicons' } }
-    }
+    use{"stevearc/oil.nvim",
+    requires = { { 'nvim-tree/nvim-web-devicons'}  }
+}
     use({
         "NStefan002/speedtyper.nvim",
-        -- config = function()
-        --     require("speedtyper").setup({
-        --     })
-        -- end,
+        config = function()
+            require("speedtyper").setup({
+                -- your config
+            })
+        end,
     })
     use {
         "danielfalk/smart-open.nvim",
@@ -40,15 +41,6 @@ return require('packer').startup(function(use)
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
     use('folke/neodev.nvim')
     use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
-    use({
-        'MeanderingProgrammer/render-markdown.nvim',
-        after = { 'nvim-treesitter' },
-        requires = { 'echasnovski/mini.nvim', opt = false },
-        config = function()
-            require('render-markdown').setup({})
-        end,
-    })
-
     use('theHamsta/nvim-dap-virtual-text')
     use("github/copilot.vim")
     use("nvim-neotest/nvim-nio")
@@ -60,9 +52,7 @@ return require('packer').startup(function(use)
     use('x4m3/vim-epitech')
     use 'simrat39/rust-tools.nvim'
     use 'terrortylor/nvim-comment'
-    use 'nvim-lua/plenary.nvim'
     use 'CopilotC-Nvim/CopilotChat.nvim'
-
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v3.x',

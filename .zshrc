@@ -1,5 +1,7 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=~/dotfiles/scripts:$HOME/bin:/usr/local/bin:$PATH:/home/vj/.cargo/bin
+export PATH=~/dotfiles/scripts:$HOME/bin:/usr/local/bin:$PATH:/home/vj/.cargo/bin:$HOME/.local/go:/home/vj/.local/bin
+unsetopt share_history
+setopt no_share_history
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -94,7 +96,7 @@ export EDITOR='nvim'
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-bindkey -v
+bindkey -e
 export KEYTIMEOUT=1
 #fix esc taking too long to go to normal mode
 
@@ -104,7 +106,23 @@ export KEYTIMEOUT=1
 # For a full list of active aliases, run `alias`.
 alias ls='eza --icons auto'
 alias emacs='emacs -nw'
-alias mc='mcsr/remove_worlds.sh ;(~/python/bin/autokey-qt)& ;(java -jar mcsr/Ninjabrain-Bot-1.4.2.jar&) && mpv ~/jrrF --shuffle --volume=30 --vid=no --no-audio-display'
+
+cursong() {
+  echo '{ "command": ["get_property_string", "filename"] }' | \
+      socat - "$HOME/.config/mpv/socket" | jq .data -r
+}
+
+cursong_path() {
+  echo '{ "command": ["get_property_string", "path"] }' | \
+      socat - "$HOME/.config/mpv/socket" | jq .data -r
+}
+
+del_cursong() {
+    rm "$(cursong_path)" -i
+}
+
+bindkey -s ^v "ts\n"
+
 alias virt-setup='xhost si:localuser:root'
 alias icat='kitty kitten icat'
 # Example aliases
@@ -119,3 +137,6 @@ export GPG_TTY=$(tty)
 
 export ASAN_OPTIONS=abort_on_error=1:halt_on_error=1
 export UBSAN_OPTIONS=abort_on_error=1:halt_on_error=1
+
+# Created by `pipx` on 2025-06-29 17:27:30
+export PATH="$PATH:/home/vj/.local/bin"

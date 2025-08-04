@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/vj/.cache/nvim/packer_hererocks/2.1.1736781742/share/lua/5.1/?.lua;/home/vj/.cache/nvim/packer_hererocks/2.1.1736781742/share/lua/5.1/?/init.lua;/home/vj/.cache/nvim/packer_hererocks/2.1.1736781742/lib/luarocks/rocks-5.1/?.lua;/home/vj/.cache/nvim/packer_hererocks/2.1.1736781742/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/vj/.cache/nvim/packer_hererocks/2.1.1736781742/lib/lua/5.1/?.so"
+local package_path_str = "/home/vj/.cache/nvim/packer_hererocks/2.1.1713484068/share/lua/5.1/?.lua;/home/vj/.cache/nvim/packer_hererocks/2.1.1713484068/share/lua/5.1/?/init.lua;/home/vj/.cache/nvim/packer_hererocks/2.1.1713484068/lib/luarocks/rocks-5.1/?.lua;/home/vj/.cache/nvim/packer_hererocks/2.1.1713484068/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/vj/.cache/nvim/packer_hererocks/2.1.1713484068/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -74,11 +74,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["CopilotChat.nvim"] = {
-    loaded = true,
-    path = "/home/vj/.local/share/nvim/site/pack/packer/start/CopilotChat.nvim",
-    url = "https://github.com/CopilotC-Nvim/CopilotChat.nvim"
-  },
   LuaSnip = {
     loaded = true,
     path = "/home/vj/.local/share/nvim/site/pack/packer/start/LuaSnip",
@@ -118,11 +113,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/vj/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
-  },
-  ["mini.nvim"] = {
-    loaded = true,
-    path = "/home/vj/.local/share/nvim/site/pack/packer/start/mini.nvim",
-    url = "https://github.com/echasnovski/mini.nvim"
   },
   ["neodev.nvim"] = {
     loaded = true,
@@ -194,14 +184,6 @@ _G.packer_plugins = {
     path = "/home/vj/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["render-markdown.nvim"] = {
-    config = { "\27LJ\2\nA\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\20render-markdown\frequire\0" },
-    load_after = {},
-    loaded = true,
-    needs_bufread = false,
-    path = "/home/vj/.local/share/nvim/site/pack/packer/opt/render-markdown.nvim",
-    url = "https://github.com/MeanderingProgrammer/render-markdown.nvim"
-  },
   ["rust-tools.nvim"] = {
     loaded = true,
     path = "/home/vj/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
@@ -214,6 +196,7 @@ _G.packer_plugins = {
     url = "https://github.com/danielfalk/smart-open.nvim"
   },
   ["speedtyper.nvim"] = {
+    config = { "\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\15speedtyper\frequire\0" },
     loaded = true,
     path = "/home/vj/.local/share/nvim/site/pack/packer/start/speedtyper.nvim",
     url = "https://github.com/NStefan002/speedtyper.nvim"
@@ -260,15 +243,10 @@ time([[Defining packer_plugins]], false)
 time([[Config for smart-open.nvim]], true)
 try_loadstring("\27LJ\2\nO\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0'\2\3\0B\0\2\1K\0\1\0\15smart_open\19load_extension\14telescope\frequire\0", "config", "smart-open.nvim")
 time([[Config for smart-open.nvim]], false)
--- Load plugins in order defined by `after`
-time([[Sequenced loading]], true)
-vim.cmd [[ packadd nvim-treesitter ]]
-vim.cmd [[ packadd render-markdown.nvim ]]
-
--- Config for: render-markdown.nvim
-try_loadstring("\27LJ\2\nA\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\20render-markdown\frequire\0", "config", "render-markdown.nvim")
-
-time([[Sequenced loading]], false)
+-- Config for: speedtyper.nvim
+time([[Config for speedtyper.nvim]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\15speedtyper\frequire\0", "config", "speedtyper.nvim")
+time([[Config for speedtyper.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

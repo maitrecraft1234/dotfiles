@@ -51,6 +51,7 @@ tiling_drag modifier titlebar
 
 # start a terminal
 bindsym $mod+Return exec alacritty
+bindsym $mod+b exec chromium
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -314,6 +315,7 @@ mouse_warping none
 #bindsym Tab exec --no-startup-id ~/mcsr/autoclick.sh 
 #bindsym n exec pkill autoclick.sh
 
+
 ## Screenshots
 bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date).png"
 bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).png"
@@ -324,11 +326,18 @@ bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t ima
 bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
-bindsym Ctrl+B exec --no-startup-id ls
-
 # Resize Minecraft window to 380x16384 and set starting position on the right monitor
 #bindsym $mod+Shift+b exec xdotool search --class "minecraft" windowsize 480 16384 windowmove 2720 -7600 && xinput set-prop 9 "Coordinate Transformation Matrix" 0.1 0 1729 0 0.1 325 0 0 1
 
 # Restore Minecraft window to 1080p (1920x1080) and set starting position on the right monitor
 #bindsym $mod+Shift+n exec xdotool search --class "minecraft" windowsize 1920 1080 windowmove 1920 0 && xdotool search --class "minecraft" windowsize 1920 1080 windowmove 1920 0 && xdotool search --class "minecraft" windowsize 1920 1080 windowmove 1920 0 && xinput set-prop 9 "Coordinate Transformation Matrix" 0.4 0 1729 0 0.4 325 0 0 1
 exec /home/vj/mcsr/mc.sh
+exec /home/vj/mcsr/resetti.sh
+
+#minecraft
+bindsym Ctrl+$mod+m exec /home/vj/mcsr/ranked.sh
+
+exec_always --no-startup-id xset r rate 180 50
+
+for_window [class="Jetpack*"] floating enable
+for_window [class="Jetpack*"] move position 2200 0
