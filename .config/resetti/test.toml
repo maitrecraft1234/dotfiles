@@ -1,0 +1,66 @@
+# This is the default configuration profile for resetti.
+# You can delete or ignore any sections which are not applicable.
+
+# The rate (in Hz) to poll for hotkey inputs.
+poll_rate = 100
+
+# The resolution to set your instances to while they are being played, in the
+# format "W,H+X,Y" (e.g. 1920x1080+0,0). Delete or comment out to disable
+# instance stretching.
+play_res = "1920x1080+1920,0"
+
+# An alternate resolution that can be toggled to while ingame. Delete this if
+# you do not want to use e.g. thin or tall window.
+#
+# You can declare multiple resolutions, like so:
+# alt_res = ["400x1080+810,0", "1920x300+0,390"]
+
+alt_res = ["295x1080+2732,0", "320x16384+2720,-7652", "1920x240+1920,340"] 
+
+utility_mode = true
+
+# The hooks section allows you to specify various commands which are run
+# upon certain actions. Any blank hooks will be ignored.
+[hooks]
+# Run when a reset occurs from ingame.
+reset = ""
+
+# Run when the user switches to their alternate resolution.
+# Make sure to have hooks for each of the alt_res's (in order) if you used more than one above.
+# You can do it like so: [ "echo Hello1", "echo Hello2" ]
+alt_res = ""
+
+# Run when the user switches to their normal resolution.
+# Make sure to have hooks for each of the alt_res's (in order) if you used more than one above.
+# You'd need to configure to run when switching from the alt_res to normal_res.
+# You can do it like so: [ "echo Hello1", "echo Hello2" ]
+normal_res = ""
+
+# Run when the Minecraft instance loses focus.
+focus_lost = ""
+
+# Run when the Minecraft instance gains focus.
+focus_gained = ""
+
+# The keybinds section lets you specify keybindings for various actions you
+# may want to perform.
+#
+# The provided keybinds simply serve as examples. You can specify one or more
+# actions for each keybind. When the keybind is pressed, all of the valid
+# actions will occur (e.g. specifying both a wall and ingame action for a single
+# key will only perform one of them, depending on where you are.)
+#
+# Bind syntax:
+# - Specify either a key or mouse button and 0 or more modifiers.
+# - You can use the syntax `codeNUM` for a key with code NUM.
+# - Most common keys, buttons, and modifiers are supported by name.
+#
+# Available actions:
+# - ingame_focus            Focus active instance.
+# - ingame_reset            Reset active instance.
+# - ingame_toggle_res(n)    Toggle resolution N for the active instance.
+#                           The list of alternate resolutions starts with N=0.
+[keybinds]
+"F2"             = ["ingame_toggle_res(1)"]
+"F7"             = ["ingame_toggle_res(2)"]
+"F6"             = ["ingame_toggle_res(3)"]

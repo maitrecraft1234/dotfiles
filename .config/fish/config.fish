@@ -20,10 +20,9 @@ abbr grs 'git restore'
 abbr gwt 'git worktree'
 abbr gd 'git diff'
 
+abbr --add dotdot --regex '^\.\.+$' --function multicd
+
 if test -f /home/vj/.ghcup/env
     source /home/vj/.ghcup/env
 end
 
-if status is-interactive
-    #idk    
-end
