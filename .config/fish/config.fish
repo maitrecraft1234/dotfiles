@@ -9,9 +9,15 @@ set -gx PATH $PATH /home/vj/.local/bin
 zoxide init fish | source
 
 # Aliases
-alias ls="eza --icons auto"
-alias emacs="emacs -nw"
-alias virt-setup="xhost si:localuser:root"
+alias ls='eza --icons auto'
+alias emacs='emacs -nw'
+alias virt-setup='xhost si:localuser:root'
+alias gss='git status --short'
+alias gl='git pull'
+alias gc='git commit'
+alias gsw='git switch'
+alias grs='git restore'
+alias gwt='git worktree'
 
 if test -f /home/vj/.ghcup/env
     source /home/vj/.ghcup/env
