@@ -10,14 +10,15 @@ zoxide init fish | source
 
 # Aliases
 alias ls='eza --icons auto'
-alias emacs='emacs -nw'
 alias virt-setup='xhost si:localuser:root'
-alias gss='git status --short'
-alias gl='git pull'
-alias gc='git commit'
-alias gsw='git switch'
-alias grs='git restore'
-alias gwt='git worktree'
+
+abbr gss 'git status --short'
+abbr gl 'git pull'
+abbr gc 'git commit'
+abbr gsw 'git switch'
+abbr grs 'git restore'
+abbr gwt 'git worktree'
+abbr gd 'git diff'
 
 if test -f /home/vj/.ghcup/env
     source /home/vj/.ghcup/env
