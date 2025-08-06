@@ -3,6 +3,7 @@ set -gx EDITOR nvim
 set -gx GPG_TTY (tty)
 set -gx ASAN_OPTIONS "abort_on_error=1:halt_on_error=1"
 set -gx UBSAN_OPTIONS "abort_on_error=1:halt_on_error=1"
+set fish_greeting
 
 zoxide init fish | source
 
@@ -17,6 +18,8 @@ abbr gsw 'git switch'
 abbr grs 'git restore'
 abbr gwt 'git worktree'
 abbr gd 'git diff'
+
+abbr dl 'yt-dlp -x'
 
 abbr --add dotdot --regex '^\.\.+$' --function multicd
 
