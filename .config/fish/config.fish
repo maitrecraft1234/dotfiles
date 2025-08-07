@@ -13,6 +13,7 @@ alias virt-setup='xhost si:localuser:root'
 
 abbr gss 'git status --short'
 abbr gl 'git pull'
+abbr gp 'git push'
 abbr gc 'git commit'
 abbr gsw 'git switch'
 abbr grs 'git restore'
