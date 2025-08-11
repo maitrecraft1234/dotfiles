@@ -290,8 +290,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioRaiseVolume exec /home/vj/mcsr/volume.sh 5
 bindsym XF86AudioLowerVolume exec /home/vj/mcsr/volume.sh -5
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec doas light -A 5
+bindsym XF86MonBrightnessDown exec doas light -U 5
 
 # Media player controls
 bindsym XF86AudioPlay exec sh -c 'echo cycle pause | socat - "$HOME/.config/mpv/socket"'
@@ -341,3 +341,15 @@ exec_always --no-startup-id xset r rate 180 50
 
 for_window [class="Jetpack*"] floating enable
 for_window [class="Jetpack*"] move position 2200 0
+
+#touchpad settings and watnot
+exec xinput set-prop 10 344 1
+exec xinput set-prop 10 190 1.800000, 0.000000, 0.000000, 0.000000, 1.800000, 0.000000, 0.000000, 0.000000, 1.000000
+
+exec_always --no-startup-id xmodmap -e "clear lock"
+
+#escape
+exec_always --no-startup-id xmodmap -e "keycode 9 = Escape NoSymbol Escape"
+
+#capslock
+exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
