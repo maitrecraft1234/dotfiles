@@ -2,7 +2,7 @@
 hour=$(date +%H)
 
 if [ "$hour" -ge 22 ] || [ "$hour" -lt 8 ]; then
-    ~/scripts/switch_theme.sh dark
+    $HOME/scripts/switch_theme.sh dark
 else
-    ~/scripts/switch_theme.sh light
+    $HOME/scripts/switch_theme.sh light
 fi
