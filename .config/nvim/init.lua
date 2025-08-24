@@ -1,2 +1,1 @@
-require("test")
-
+require("conf")
