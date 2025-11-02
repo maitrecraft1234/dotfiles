@@ -7,3 +7,6 @@ bold_italic = { family = "CommitMono Nerd Font", style = "Bold Italic" }
 
 [general]
 import = ["./theme.toml"]
+
+[window]
+decorations = "None"

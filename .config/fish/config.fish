@@ -1,4 +1,4 @@
-set -x PATH $HOME/.cabal/bin $HOME/.ghcup/bin $HOME/dotfiles/scripts $HOME/bin /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /sbin /bin /usr/lib/jvm/default-jdk/bin /usr/lib/jvm/default-jre/bin $HOME/.cargo/bin $HOME/.local/go $HOME/.local/bin $PATH
+set -x PATH $HOME/.cabal/bin $HOME/.ghcup/bin $HOME/dotfiles/scripts $HOME/bin /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /sbin /bin /usr/lib/jvm/default-jdk/bin /usr/lib/jvm/default-jre/bin $HOME/.cargo/bin $HOME/.local/go $HOME/.local/bin $HOME/go/bin $PATH
 set -gx EDITOR nvim
 set -gx GPG_TTY (tty)
 set -gx ASAN_OPTIONS "abort_on_error=1:halt_on_error=1"
@@ -13,6 +13,8 @@ alias virt-setup='xhost si:localuser:root'
 
 abbr gss 'git status --short'
 abbr gl 'git pull'
+abbr glr 'git pull --rebase'
+abbr glm 'git pull --rebase=false'
 abbr gp 'git push'
 abbr gc 'git commit'
 abbr gsw 'git switch'
@@ -24,9 +26,15 @@ abbr dl 'yt-dlp -x'
 
 abbr --add dotdot --regex '^\.\.+$' --function multicd
 
-if status --is-login
-    if test -z "$DISPLAY" -a (tty) = "/dev/tty1"
-        $HOME/scripts/themeswitchservice/run
-        exec startx
-    end
+if status --is-login; and not set -q WAYLAND_DISPLAY; and not set -q FISH_LOGIN_INIT_DONE
+    set -gx FISH_LOGIN_INIT_DONE 1
+    $HOME/scripts/themeswitchservice/run
+    $HOME/scripts/log.sh
 end
+
+# opencode
+fish_add_path /home/vj/.opencode/bin
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
