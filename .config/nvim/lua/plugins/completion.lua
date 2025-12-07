@@ -4,11 +4,18 @@ return {
         dependencies = {
             "fang2hou/blink-copilot",
             'rafamadriz/friendly-snippets',
+            'saghen/blink.compat',
         },
 
         version = '1.*',
 
         opts = {
+            completion = {
+                documentation = { auto_show = true, auto_show_delay_ms = 200 },
+                ghost_text = { enabled = true },
+                accept = { auto_brackets = { enabled = true } },
+            },
+
             keymap = {
                 preset = 'default',
                 ["<C-y>"] = { "accept", "fallback" },
@@ -31,5 +38,9 @@ return {
 
             signature = { enabled = true }
         },
+
+        config = function(_, opts)
+            require('blink.cmp').setup(opts)
+        end,
     },
 }

@@ -13,25 +13,4 @@ return {
     end,
   },
 
-  {
-    "saghen/blink.cmp",
-    version = "*",
-    dependencies = { "rafamadriz/friendly-snippets", "saghen/blink.compat" },
-    lazy = true,
-    event = "InsertEnter",
-    opts = {
-      completion = {
-        documentation = { auto_show = true, auto_show_delay_ms = 200 },
-        ghost_text = { enabled = true },
-        accept = { auto_brackets = { enabled = true } }
-      },
-      sources = {
-        default = { "lsp", "path", "snippets", "buffer" }
-      },
-      keymap = { preset = "enter" },
-    },
-    config = function(_, opts)
-      require("blink.cmp").setup(opts)
-    end,
-  },
 }
