@@ -5,7 +5,8 @@ echo "Select your session:"
 echo "  1) i3 (X11)"
 echo "  2) sway (Wayland)"
 echo "  3) niri (Wayland) default"
-echo "  4) Exit"
+echo "  4) jay (Wayland)"
+echo "  otherwise) Exit"
 echo
 read -P "Choice: " choice
 
@@ -18,6 +19,9 @@ switch $choice
         exit
     case '' '3'
         /home/vj/scripts/waystart.sh niri
+        exit
+    case '4'
+        /home/vj/scripts/waystart.sh jay run
         exit
     case '*'
         exit
