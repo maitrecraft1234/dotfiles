@@ -18,7 +18,7 @@ switch $choice
         /home/vj/scripts/waystart.sh sway
         exit
     case '' '3'
-        /home/vj/scripts/waystart.sh niri
+        /home/vj/scripts/waystart.sh niri --session
         exit
     case '4'
         /home/vj/scripts/waystart.sh jay run
