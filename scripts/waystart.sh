@@ -5,7 +5,8 @@ export CHROMIUM_FLAGS="--enable-features=UseOzonePlatform --ozone-platform=wayla
 export WLR_BACKENDS=drm
 export WLR_DRM_DEVICES=/dev/dri/card0
 export QT_QPA_PLATFORM=wayland
+export LIBSEAT_BACKEND=seatd
 doas mkdir -p $XDG_RUNTIME_DIR
 doas chown vj $XDG_RUNTIME_DIR
 doas chmod a+rw /run/seatd.sock
-dbus-run-session $1
+dbus-run-session "$@"
