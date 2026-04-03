@@ -6,6 +6,15 @@
 // Input device configuration.
 // Find the full list of options on the wiki:
 // https://yalter.github.io/niri/Configuration:-Input
+environment {
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+}
+
+cursor {
+    xcursor-theme "Adwaita"
+    xcursor-size 24
+}
+
 input {
     keyboard {
         xkb {
@@ -20,7 +29,7 @@ input {
             // from org.freedesktop.locale1. You can control these using
             // localectl set-x11-keymap.
         }
-        repeat-delay 250
+        repeat-delay 150
         repeat-rate 50
 
         // Enable numlock on startup, omitting this setting disables it.
@@ -47,8 +56,8 @@ input {
     mouse {
         // off
         // natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
+        accel-speed -0.6
+        accel-profile "flat"
         // scroll-method "no-scroll"
     }
 
@@ -77,6 +86,20 @@ input {
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
+output "DP-1" {
+    mode "1920x1080@144.001"
+    scale 1
+    transform "normal"
+    position x=0 y=0
+}
+
+output "HDMI-A-1" {
+    mode "1920x1080@60"
+    scale 1
+    transform "normal"
+    position x=-1920 y=0
+}
+
 /-output "eDP-1" {
     // Uncomment this line to disable this output.
     // off
@@ -87,7 +110,7 @@ input {
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@120.030"
+    mode "1920x1080@144"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
     scale 2
@@ -105,7 +128,7 @@ input {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    position x=1280 y=0
+    position x=0 y=0
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -271,6 +294,12 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
+spawn-at-startup "dbus-update-activation-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP=niri"
+spawn-at-startup "pipewire"
+spawn-at-startup "wireplumber"
+spawn-at-startup "pipewire-pulse"
+//spawn-sh-at-startup "pkill xdg-desktop-por; /usr/libexec/xdg-desktop-portal-gnome & sleep 1 && /usr/libexec/xdg-desktop-portal &"
+spawn-sh-at-startup "pkill xdg-desktop-por; /usr/libexec/xdg-desktop-portal-wlr & sleep 1 && /usr/libexec/xdg-desktop-portal &"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -377,11 +406,24 @@ binds {
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
     // Using spawn-sh allows to pass multiple arguments together with the command.
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "pactl set-sink-volume @DEFAULT_SINK@ +10%"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "pactl set-sink-volume @DEFAULT_SINK@ -10%"; }
+    // XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "pactl set-sink-volume @DEFAULT_SINK@ +10%"; }
+    // XF86AudioLowerVolume allow-when-locked=true { spawn-sh "pactl set-sink-volume @DEFAULT_SINK@ -10%"; }
     // XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-    XF86AudioMute        allow-when-locked=true { spawn-sh "pactl set-sink-mute @DEFAULT_SINK@ toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    // XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+
+    //
+   // mpv ~/jrrF --shuffle --volume=30 --vid=no --no-audio-display --input-ipc-server=$HOME/.config/mpv/socket ;
+   XF86AudioRaiseVolume allow-when-locked=true { spawn "/home/vj/mcsr/volume.sh" "5"; }
+   XF86AudioLowerVolume allow-when-locked=true { spawn "/home/vj/mcsr/volume.sh" "-5"; }
+   XF86AudioPlay {spawn-sh "echo cycle pause | socat - \"$HOME/.config/mpv/socket\"";}
+   XF86AudioPause {spawn-sh "echo cycle pause | socat - \"$HOME/.config/mpv/socket\"";}
+   XF86AudioNext {spawn-sh "echo playlist-next | socat - \"$HOME/.config/mpv/socket\"";}
+   XF86AudioPrev {spawn-sh "echo playlist-prev | socat - \"$HOME/.config/mpv/socket\"";}
+
+
+
+
 
     // Example brightness key mappings for brightnessctl.
     // You can use regular spawn with multiple arguments too (to avoid going through "sh"),

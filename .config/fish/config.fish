@@ -22,7 +22,7 @@ abbr grs 'git restore'
 abbr gwt 'git worktree'
 abbr gd 'git diff'
 
-abbr dl 'yt-dlp -x'
+abbr dl 'yt-dlp --cookies-from-browser chromium -x'
 
 abbr --add dotdot --regex '^\.\.+$' --function multicd
 
