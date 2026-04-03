@@ -11,21 +11,28 @@ exec = "i3status"
 
 [[outputs]]
 name = "main"
-match.connector = "DP-0"
+match.connector = "DP-1"
 tearing.mode = "variant1"
-x = 0
+x = 1920
 y = 0
-mode = { width = 1920, height = 1080, refresh-rate = 144.0 }
+mode = { width = 1920, height = 1080, refresh-rate = 144.001 }
 
 [[outputs]]
 name = "second"
-match.connector = "HDMI-0"
-x = 1920
+match.connector = "HDMI-A-1"
+x = 0
 y = 0
 
 on-graphics-initialized = [
-  { type = "exec", exec = ["waybar"] },
+#  { type = "exec", exec = ["pipewire"] },
+#  { type = "exec", exec = ["pipewire-pulse"] },
+#  { type = "exec", exec = ["wireplumber"] },
+  { type = "exec", exec = ["dbus-update-activation-environment", "WAYLAND_DISPLAY", "XDG_CURRENT_DESKTOP", "XDG_SESSION_TYPE"] },
 ]
+
+[[client_rules]]
+match.app_id = "wl-clipboard"
+action.add_capabilities = ["data-control"]
 
 [shortcuts]
 logo-Return = { type = "exec", exec = ["alacritty"] }
