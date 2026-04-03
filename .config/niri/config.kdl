@@ -299,13 +299,6 @@ spawn-at-startup "pipewire-pulse"
 spawn-at-startup "wireplumber"
 spawn-at-startup "dbus-update-activation-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XDG_SESSION_TYPE"
 spawn-at-startup "waybar"
-spawn-at-startup "dbus-update-activation-environment" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP=niri"
-spawn-at-startup "pipewire"
-spawn-at-startup "wireplumber"
-spawn-at-startup "pipewire-pulse"
-//spawn-sh-at-startup "pkill xdg-desktop-por; /usr/libexec/xdg-desktop-portal-gnome & sleep 1 && /usr/libexec/xdg-desktop-portal &"
-spawn-sh-at-startup "pkill xdg-desktop-por; /usr/libexec/xdg-desktop-portal-wlr & sleep 1 && /usr/libexec/xdg-desktop-portal &"
-
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
