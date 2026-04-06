@@ -1,5 +1,12 @@
-log-level = "info"
+log-level = "none"
 repeat-rate = { rate = 50, delay = 180 }
+on-graphics-initialized = [
+  { type = "exec", exec = ["dbus-update-activation-environment", "WAYLAND_DISPLAY", "XDG_CURRENT_DESKTOP", "XDG_SESSION_TYPE"] },
+  { type = "exec", exec = ["waybar"] },
+]
+workspace-display-order = "sorted"
+window-management-key = "logo"
+focus-follows-mouse = false
 
 [env]
 ELECTRON_OZONE_PLATFORM_HINT = "wayland"
@@ -8,6 +15,11 @@ CHROMIUM_FLAGS = "--enable-features=UseOzonePlatform --ozone-platform=wayland"
 [status]
 format = "i3bar"
 exec = "i3status"
+
+[[inputs]]
+match.is_pointer = true
+accel-profile = "Flat"
+accel-speed = -0.6
 
 [[outputs]]
 name = "main"
@@ -23,16 +35,24 @@ match.connector = "HDMI-A-1"
 x = 0
 y = 0
 
-on-graphics-initialized = [
-#  { type = "exec", exec = ["pipewire"] },
-#  { type = "exec", exec = ["pipewire-pulse"] },
-#  { type = "exec", exec = ["wireplumber"] },
-  { type = "exec", exec = ["dbus-update-activation-environment", "WAYLAND_DISPLAY", "XDG_CURRENT_DESKTOP", "XDG_SESSION_TYPE"] },
-]
+[[clients]]
+match.comm = "nvim"
+match.sandboxed = false
+capabilities = "data-control"
 
-[[client_rules]]
-match.app_id = "wl-clipboard"
-action.add_capabilities = ["data-control"]
+[[clients]]
+match.any = [
+    { comm = "wl-copy" },
+    { comm = "wl-paste" },
+]
+match.sandboxed = false
+capabilities = "data-control"
+
+[[windows]]
+match.title-regex = 'is sharing (your screen|a window)\.$'
+match.client.comm = "chromium"
+initial-tile-state = "floating"
+auto-focus = false
 
 [shortcuts]
 logo-Return = { type = "exec", exec = ["alacritty"] }
@@ -92,31 +112,40 @@ alt-8 = { type = "show-workspace", name = "18", output.name = "second" }
 alt-9 = { type = "show-workspace", name = "19", output.name = "second" }
 alt-0 = { type = "show-workspace", name = "20", output.name = "second" }
 
-logo-shift-1 = { type = "move-to-workspace", name = "1" }
-logo-shift-2 = { type = "move-to-workspace", name = "2" }
-logo-shift-3 = { type = "move-to-workspace", name = "3" }
-logo-shift-4 = { type = "move-to-workspace", name = "4" }
-logo-shift-5 = { type = "move-to-workspace", name = "5" }
-logo-shift-6 = { type = "move-to-workspace", name = "6" }
-logo-shift-7 = { type = "move-to-workspace", name = "7" }
-logo-shift-8 = { type = "move-to-workspace", name = "8" }
-logo-shift-9 = { type = "move-to-workspace", name = "9" }
-logo-shift-0 = { type = "move-to-workspace", name = "10" }
+logo-shift-1 = { type = "move-to-workspace", name = "1", output.name = "main" }
+logo-shift-2 = { type = "move-to-workspace", name = "2", output.name = "main" }
+logo-shift-3 = { type = "move-to-workspace", name = "3", output.name = "main" }
+logo-shift-4 = { type = "move-to-workspace", name = "4", output.name = "main" }
+logo-shift-5 = { type = "move-to-workspace", name = "5", output.name = "main" }
+logo-shift-6 = { type = "move-to-workspace", name = "6", output.name = "main" }
+logo-shift-7 = { type = "move-to-workspace", name = "7", output.name = "main" }
+logo-shift-8 = { type = "move-to-workspace", name = "8", output.name = "main" }
+logo-shift-9 = { type = "move-to-workspace", name = "9", output.name = "main" }
+logo-shift-0 = { type = "move-to-workspace", name = "10", output.name = "main"  }
 
-alt-shift-1 = { type = "move-to-workspace", name = "11" }
-alt-shift-2 = { type = "move-to-workspace", name = "12" }
-alt-shift-3 = { type = "move-to-workspace", name = "13" }
-alt-shift-4 = { type = "move-to-workspace", name = "14" }
-alt-shift-5 = { type = "move-to-workspace", name = "15" }
-alt-shift-6 = { type = "move-to-workspace", name = "16" }
-alt-shift-7 = { type = "move-to-workspace", name = "17" }
-alt-shift-8 = { type = "move-to-workspace", name = "18" }
-alt-shift-9 = { type = "move-to-workspace", name = "19" }
-alt-shift-0 = { type = "move-to-workspace", name = "20" }
+alt-shift-1 = { type = "move-to-workspace", name = "11", output.name = "second" }
+alt-shift-2 = { type = "move-to-workspace", name = "12", output.name = "second" }
+alt-shift-3 = { type = "move-to-workspace", name = "13", output.name = "second" }
+alt-shift-4 = { type = "move-to-workspace", name = "14", output.name = "second" }
+alt-shift-5 = { type = "move-to-workspace", name = "15", output.name = "second" }
+alt-shift-6 = { type = "move-to-workspace", name = "16", output.name = "second" }
+alt-shift-7 = { type = "move-to-workspace", name = "17", output.name = "second" }
+alt-shift-8 = { type = "move-to-workspace", name = "18", output.name = "second" }
+alt-shift-9 = { type = "move-to-workspace", name = "19", output.name = "second" }
+alt-shift-0 = { type = "move-to-workspace", name = "20", output.name = "second" }
+
+logo-ctrl-shift-h = {
+    type = "move-to-output",
+    direction = "left",
+}
+logo-ctrl-shift-l = {
+    type = "move-to-output",
+    direction = "right",
+}
 
 XF86AudioRaiseVolume = { type = "exec", exec = ["pactl", "set-sink-volume", "@DEFAULT_SINK@", "+10%"] }
 XF86AudioLowerVolume = { type = "exec", exec = ["pactl", "set-sink-volume", "@DEFAULT_SINK@", "-10%"] }
-XF86AudioMute = { type = "exec", exec = ["pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle"] }
+XF86AudioMute = { type = "exec", exec = ["wpctl", "set-mute", "@DEFAULT_AUDIO_SOURCE@", "toggle"] }
 XF86MonBrightnessUp = { type = "exec", exec = ["doas", "light", "-A", "5"] }
 XF86MonBrightnessDown = { type = "exec", exec = ["doas", "light", "-U", "5"] }
 

@@ -311,8 +311,8 @@ local config = {
         -- background = "#00000000", --color si pas image
         -- background_png = "....", --background du wall (path)
         ninb_opacity = 1.0, --nin bot opacité
-        -- ninb_anchor = "topright",
-        ninb_anchor = "separate",
+        ninb_anchor = "topright",
+        -- ninb_anchor = "separate",
         cursor_icon = "", -- "d9ce0ab605698f320427677b458ad60b",
         cursor_theme = ""
     },
@@ -330,6 +330,7 @@ local config = {
             end
             return false
         end,
+        ["*-F9"] = helpers.toggle_floating,
         ["*-F7"] = resolutions.tall,
         ["*-F6"] = resolutions.wide,
         ["*-F2"] = resolutions.thin,
