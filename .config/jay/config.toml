@@ -7,6 +7,7 @@ on-graphics-initialized = [
 workspace-display-order = "sorted"
 window-management-key = "logo"
 focus-follows-mouse = false
+idle = { minutes = 0 }
 
 [env]
 ELECTRON_OZONE_PLATFORM_HINT = "wayland"
@@ -15,6 +16,11 @@ CHROMIUM_FLAGS = "--enable-features=UseOzonePlatform --ozone-platform=wayland"
 [status]
 format = "i3bar"
 exec = "i3status"
+
+[[inputs]]
+match.name = "ZSA Technology Labs Ergodox EZ*"
+xkb-model = "pc105"
+xkb-layout = "us"
 
 [[inputs]]
 match.is_pointer = true
@@ -143,10 +149,39 @@ logo-ctrl-shift-l = {
     direction = "right",
 }
 
-XF86AudioRaiseVolume = { type = "exec", exec = ["pactl", "set-sink-volume", "@DEFAULT_SINK@", "+10%"] }
-XF86AudioLowerVolume = { type = "exec", exec = ["pactl", "set-sink-volume", "@DEFAULT_SINK@", "-10%"] }
-XF86AudioMute = { type = "exec", exec = ["wpctl", "set-mute", "@DEFAULT_AUDIO_SOURCE@", "toggle"] }
-XF86MonBrightnessUp = { type = "exec", exec = ["doas", "light", "-A", "5"] }
-XF86MonBrightnessDown = { type = "exec", exec = ["doas", "light", "-U", "5"] }
-
 Print = { type = "exec", exec = ["jay", "screenshot"] }
+# these don't work right now because the keyboard is also a pointer device
+# XF86AudioRaiseVolume = { type = "exec", exec = ["pactl", "set-sink-volume", "@DEFAULT_SINK@", "+10%"] }
+# XF86AudioLowerVolume = { type = "exec", exec = ["pactl", "set-sink-volume", "@DEFAULT_SINK@", "-10%"] }
+# XF86AudioMute = { type = "exec", exec = ["wpctl", "set-mute", "@DEFAULT_AUDIO_SOURCE@", "toggle"] }
+# XF86AudioMute = {type = "exec", exec = ["sh", "-c", "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"]}
+# XF86AudioMute = {type = "exec", exec = {shell = "touch /tmp/testweareworking"}}
+# XF86MonBrightnessUp = { type = "exec", exec = ["doas", "light", "-A", "5"] }
+# XF86MonBrightnessDown = { type = "exec", exec = ["doas", "light", "-U", "5"] }
+
+[complex-shortcuts.F10]
+mod-mask = ""
+action = { type = "exec", exec = ["/home/vj/coding/movietest/scripts/music-control", "volume-up"] }
+
+[complex-shortcuts.F11]
+mod-mask = ""
+action = { type = "exec", exec = ["/home/vj/coding/movietest/scripts/music-control", "volume-down"] }
+
+[complex-shortcuts.F6]
+mod-mask = ""
+# action = { type = "exec", exec = ["sh", "-c", "echo cycle pause | socat - \"$HOME/.config/mpv/socket\""] }
+action = { type = "exec", exec = ["/home/vj/coding/movietest/scripts/music-control", "toggle"] }
+
+[complex-shortcuts.F9]
+mod-mask = ""
+# action = { type = "exec", exec = ["sh", "-c", "echo playlist-next | socat - \"$HOME/.config/mpv/socket\""] }
+action = { type = "exec", exec = ["/home/vj/coding/movietest/scripts/music-control", "next"] }
+
+[complex-shortcuts.F8]
+mod-mask = ""
+# action = { type = "exec", exec = ["sh", "-c", "echo playlist-prev | socat - \"$HOME/.config/mpv/socket\""] }
+action = { type = "exec", exec = ["/home/vj/coding/movietest/scripts/music-control", "prev"] }
+
+[complex-shortcuts.F12]
+mod-mask = ""
+action = { type = "exec", exec = ["wpctl", "set-mute", "@DEFAULT_AUDIO_SOURCE@", "toggle"] }

@@ -320,8 +320,8 @@ local config = {
         -- show/hide ninb
         ["*-9"] = function()
             if is_process_running("/mcsr/nin") then
-                os.execute("pkill -f /mcsr/nin")
-                print("killing nin")
+                -- os.execute("pkill -f /mcsr/nin")
+                -- print("killing nin")
             else
                 waywall.show_floating(true)
                 waywall.exec("/usr/lib/jvm/openjdk17/bin/java -Dawt.useSystemAAFontSettings=on -jar /home/vj/mcsr/nin")
@@ -330,9 +330,9 @@ local config = {
             end
             return false
         end,
-        ["*-F9"] = helpers.toggle_floating,
+        ["*-F1"] = helpers.toggle_floating,
         ["*-F7"] = resolutions.tall,
-        ["*-F6"] = resolutions.wide,
+        ["*-F5"] = resolutions.wide,
         ["*-F2"] = resolutions.thin,
         -- ["*-H"] = function ()
         --     waywall.toggle_fullscreen()

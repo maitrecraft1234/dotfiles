@@ -4,12 +4,15 @@ export XDG_RUNTIME_DIR=/run/user/vj
 export CHROMIUM_FLAGS="--enable-features=UseOzonePlatform --ozone-platform=wayland"
 export WLR_BACKENDS=drm
 export WLR_DRM_DEVICES=/dev/dri/card0
+export WGPU_BACKEND=vulkan
 export XCURSOR_THEME=Adwaita
 export XCURSOR_SIZE=24
 export QT_QPA_PLATFORM=wayland
 export LIBSEAT_BACKEND=seatd
 export XDG_CURRENT_DESKTOP=$1
 export XDG_SESSION_TYPE=wayland
+export XKB_DEFAULT_MODEL=pc105
+export XKB_DEFAULT_LAYOUT=us
 doas mkdir -p $XDG_RUNTIME_DIR
 doas chown vj $XDG_RUNTIME_DIR
 doas chmod a+rw /run/seatd.sock

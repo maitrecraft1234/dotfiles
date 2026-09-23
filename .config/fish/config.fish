@@ -22,11 +22,11 @@ abbr grs 'git restore'
 abbr gwt 'git worktree'
 abbr gd 'git diff'
 
-abbr dl 'yt-dlp --cookies-from-browser chromium -x'
+abbr dl 'yt-dlp --impersonate Chrome --cookies-from-browser chromium -x'
 
 abbr --add dotdot --regex '^\.\.+$' --function multicd
 
-if status --is-login; and not set -q WAYLAND_DISPLAY; and not set -q FISH_LOGIN_INIT_DONE
+if status --is-login; and not set -q WAYLAND_DISPLAY; and not set -q FISH_LOGIN_INIT_DONE ; and not set -q SSH_CONNECTION
     set -gx FISH_LOGIN_INIT_DONE 1
     $HOME/scripts/themeswitchservice/run
     $HOME/scripts/log.sh
